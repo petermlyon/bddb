@@ -4,6 +4,190 @@
  */
 import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 
-const deployedContracts = {} as const;
+const deployedContracts = {
+  31337: {
+    YourContract: {
+      address: "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9",
+      abi: [
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "_owner",
+              type: "address",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "setter",
+              type: "address",
+            },
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "tgHash",
+                  type: "string",
+                },
+                {
+                  internalType: "string",
+                  name: "displayName",
+                  type: "string",
+                },
+                {
+                  internalType: "string",
+                  name: "description",
+                  type: "string",
+                },
+                {
+                  internalType: "string",
+                  name: "company",
+                  type: "string",
+                },
+                {
+                  internalType: "string",
+                  name: "jobTitle",
+                  type: "string",
+                },
+                {
+                  internalType: "string",
+                  name: "bioUrl",
+                  type: "string",
+                },
+              ],
+              indexed: false,
+              internalType: "struct User",
+              name: "newUser",
+              type: "tuple",
+            },
+          ],
+          name: "UserChange",
+          type: "event",
+        },
+        {
+          inputs: [],
+          name: "owner",
+          outputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "tgHash",
+                  type: "string",
+                },
+                {
+                  internalType: "string",
+                  name: "displayName",
+                  type: "string",
+                },
+                {
+                  internalType: "string",
+                  name: "description",
+                  type: "string",
+                },
+                {
+                  internalType: "string",
+                  name: "company",
+                  type: "string",
+                },
+                {
+                  internalType: "string",
+                  name: "jobTitle",
+                  type: "string",
+                },
+                {
+                  internalType: "string",
+                  name: "bioUrl",
+                  type: "string",
+                },
+              ],
+              internalType: "struct User",
+              name: "_newUser",
+              type: "tuple",
+            },
+          ],
+          name: "updateUser",
+          outputs: [],
+          stateMutability: "payable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+          ],
+          name: "userList",
+          outputs: [
+            {
+              internalType: "string",
+              name: "tgHash",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "displayName",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "description",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "company",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "jobTitle",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "bioUrl",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "withdraw",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          stateMutability: "payable",
+          type: "receive",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+  },
+} as const;
 
 export default deployedContracts satisfies GenericContractsDeclaration;

@@ -7,6 +7,15 @@ import "hardhat/console.sol";
 // Use openzeppelin to inherit battle-tested implementations (ERC20, ERC721, etc)
 // import "@openzeppelin/contracts/access/Ownable.sol";
 
+struct User {
+	string tgHash;
+	string displayName;
+	string description;
+	string company;
+	string jobTitle;
+	string bioUrl;
+}
+
 /**
  * A smart contract that allows changing a state variable of the contract and tracking the changes
  * It also allows the owner to withdraw the Ether in the contract
@@ -15,17 +24,12 @@ import "hardhat/console.sol";
 contract YourContract {
 	// State Variables
 	address public immutable owner;
-	string public greeting = "Building Unstoppable Apps!!!";
-	bool public premium = false;
-	uint256 public totalCounter = 0;
-	mapping(address => uint) public userGreetingCounter;
+	mapping(address => User) public userList;
 
 	// Events: a way to emit log statements from smart contract that can be listened to by external parties
-	event GreetingChange(
-		address indexed greetingSetter,
-		string newGreeting,
-		bool premium,
-		uint256 value
+	event UserChange(
+		address indexed setter,
+		User newUser
 	);
 
 	// Constructor: Called once on contract deployment
@@ -45,30 +49,20 @@ contract YourContract {
 	/**
 	 * Function that allows anyone to change the state variable "greeting" of the contract and increase the counters
 	 *
-	 * @param _newGreeting (string memory) - new greeting to save on the contract
+	 * @param _newUser (string memory) - new greeting to save on the contract
 	 */
-	function setGreeting(string memory _newGreeting) public payable {
+	function updateUser(User memory _newUser) public payable {
 		// Print data to the hardhat chain console. Remove when deploying to a live network.
 		console.log(
-			"Setting new greeting '%s' from %s",
-			_newGreeting,
+			"Setting username '%s' from %s",
+			_newUser.displayName,
 			msg.sender
 		);
 
-		// Change state variables
-		greeting = _newGreeting;
-		totalCounter += 1;
-		userGreetingCounter[msg.sender] += 1;
-
-		// msg.value: built-in global variable that represents the amount of ether sent with the transaction
-		if (msg.value > 0) {
-			premium = true;
-		} else {
-			premium = false;
-		}
+		userList[msg.sender] = _newUser;
 
 		// emit: keyword used to trigger an event
-		emit GreetingChange(msg.sender, _newGreeting, msg.value > 0, msg.value);
+		emit UserChange(msg.sender, _newUser);
 	}
 
 	/**
