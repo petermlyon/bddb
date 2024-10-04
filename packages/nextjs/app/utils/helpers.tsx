@@ -1,18 +1,25 @@
 import { User } from "../ApiClasses/User";
-import { doHash } from "./hasher";
+import argon2 from "argon2-browser";
 import { useAccount } from "wagmi";
 import { useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
+
+const appSalt = "DkhgwWxzlBOPO5ZKxono";
+
+export const doHash = (name: string, wallet: string) => {
+  return argon2.hash({ pass: name, salt: `${wallet}${appSalt}` });
+};
 
 export function useHelpers() {
   const { writeContractAsync } = useScaffoldWriteContract("YourContract");
   const { address: connectedAddress } = useAccount();
 
-  const updateMe = (user: User) => {
+  const updateMe = async (user: User) => {
     const userMod = JSON.parse(JSON.stringify(user));
     delete userMod.tg;
 
     if (user.tg && connectedAddress) {
-      userMod.tgHash = doHash(user.tg, connectedAddress);
+      console.log(await doHash(user.tg, appSalt));
+      userMod.tgHash = (await doHash(user.tg, appSalt)).hashHex;
     }
 
     return writeContractAsync({
@@ -21,5 +28,7 @@ export function useHelpers() {
     });
   };
 
-  return [updateMe];
+  return {
+    updateMe,
+  };
 }

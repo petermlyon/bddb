@@ -1851,13 +1851,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@phc/format@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "@phc/format@npm:1.0.0"
-  checksum: 15ee02504fbc16590923d89b1f1c2f5892df27cf2bf19180e5678511413e87b6e5355815a092749cd01698855ee5a0fc5d2393951c727acd650934eed290e26e
-  languageName: node
-  linkType: hard
-
 "@pkgjs/parseargs@npm:^0.11.0":
   version: 0.11.0
   resolution: "@pkgjs/parseargs@npm:0.11.0"
@@ -2538,6 +2531,13 @@ __metadata:
     hardhat: ^2.9.9
     typechain: ^8.3.2
   checksum: a05998ce89bb4a297f233f4489e4af2a3ad0abcedd75392096745a378d7c5bab9650fcd5dd778c9deaf790bf16e3a849b3ed91a6ae916173df6dfc9e574efcbc
+  languageName: node
+  linkType: hard
+
+"@types/argon2-browser@npm:^1.18.4":
+  version: 1.18.4
+  resolution: "@types/argon2-browser@npm:1.18.4"
+  checksum: 4bd8ce8cff2126805f600fbd7a6d7c3c6480f7fb1e6583cd83c8429248755ace856a6f2c18b1922aa20d815a9b967354a35b84b3177cd679253d32466c63e165
   languageName: node
   linkType: hard
 
@@ -4048,15 +4048,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"argon2@npm:^0.41.1":
-  version: 0.41.1
-  resolution: "argon2@npm:0.41.1"
-  dependencies:
-    "@phc/format": ^1.0.0
-    node-addon-api: ^8.1.0
-    node-gyp: latest
-    node-gyp-build: ^4.8.1
-  checksum: c26e94275c8b04a5f0cd3f4b0ff80f2ee4d8805e5fe39ec8b8f511409bad40e493bfb85f8b107d7d40714e64144a9fedf79cc8320beeec037791d9683bb7e753
+"argon2-browser@npm:^1.18.0":
+  version: 1.18.0
+  resolution: "argon2-browser@npm:1.18.0"
+  checksum: f226431ab71bd9374f958ab74298404ada61b2ab610b5e325a2de0de457829d5d52846d83b1bf00067b5828ff390adbb6230cc9d0d5abcd18c5bc7b87ece5011
   languageName: node
   linkType: hard
 
@@ -4378,6 +4373,13 @@ __metadata:
   version: 1.5.1
   resolution: "base64-js@npm:1.5.1"
   checksum: 669632eb3745404c2f822a18fc3a0122d2f9a7a13f7fb8b5823ee19d1d2ff9ee5b52c53367176ea4ad093c332fd5ab4bd0ebae5a8e27917a4105a4cfc86b1005
+  languageName: node
+  linkType: hard
+
+"base64-loader@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "base64-loader@npm:1.0.0"
+  checksum: d9b619e71f30ef8d9e178027e4834f734dc95306e95265e350217943ccbe3e4a149a47bca1796bebc07148eba6d68d767f003ebde90541d92b97a6d170bb6e09
   languageName: node
   linkType: hard
 
@@ -8836,11 +8838,11 @@ __metadata:
   linkType: hard
 
 "jiti@npm:^2.1.2":
-  version: 2.1.2
-  resolution: "jiti@npm:2.1.2"
+  version: 2.2.1
+  resolution: "jiti@npm:2.2.1"
   bin:
     jiti: lib/jiti-cli.mjs
-  checksum: cf40b2051093395e2c3ec8b0f0c4fe931cbf91654533fe170437901aec441663cdd6deade281cb4b029222fc4c939751fa9dd022d46d99b1d62023d1cf182736
+  checksum: 40881ee25cb4e71686ba4d4553eef9452a3b2f06ca4308ddab15a1af1c7086023ef260c1f9ec7aa5fc306f66b1b27663060cab444aac20d5a582e0e068a1037a
   languageName: node
   linkType: hard
 
@@ -10011,15 +10013,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-addon-api@npm:^8.1.0":
-  version: 8.2.0
-  resolution: "node-addon-api@npm:8.2.0"
-  dependencies:
-    node-gyp: latest
-  checksum: 9bbdb7e99b17ca4e76c648cc97dfb6b71ab5e14b6d5a9b6e4bd3dc8b621040074fdefc8ab119765f70ee283de25aaf8e48d0ebc989d38e913e76a5050071cf4d
-  languageName: node
-  linkType: hard
-
 "node-emoji@npm:^1.10.0":
   version: 1.11.0
   resolution: "node-emoji@npm:1.11.0"
@@ -10085,7 +10078,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-gyp-build@npm:^4.2.0, node-gyp-build@npm:^4.2.2, node-gyp-build@npm:^4.3.0, node-gyp-build@npm:^4.8.1":
+"node-gyp-build@npm:^4.2.0, node-gyp-build@npm:^4.2.2, node-gyp-build@npm:^4.3.0":
   version: 4.8.2
   resolution: "node-gyp-build@npm:4.8.2"
   bin:
@@ -11797,7 +11790,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "se-2@workspace:."
   dependencies:
-    argon2: ^0.41.1
+    "@types/argon2-browser": ^1.18.4
+    argon2-browser: ^1.18.0
+    base64-loader: ^1.0.0
     husky: ^8.0.1
     lint-staged: ^13.0.3
   languageName: unknown
