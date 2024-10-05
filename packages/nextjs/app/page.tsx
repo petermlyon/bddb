@@ -47,9 +47,9 @@ const Home: NextPage = () => {
     <>
       <div className="flex items-center flex-col flex-grow pt-10">
         <div className="px-5" style={{ width: "100%" }}>
-          <h1 style={{ display: "flex", width: "100%", justifyContent: "center" }}>
+          <div style={{ display: "flex", width: "100%", justifyContent: "center" }}>
             <img style={{ width: "400pt" }} src="./chained.png"></img>
-          </h1>
+          </div>
           <div
             className="flex items-center flex-row flex-grow pt-10"
             style={{ width: "50%", justifyContent: "center", margin: "auto" }}
@@ -85,14 +85,16 @@ const Home: NextPage = () => {
       </div>
     </>
   ) : connectedAddress ? (
-    <EditDialog headerText="Add yourself!" writeButtonText="Chain me in!" writeFunction={addMe}></EditDialog>
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", width: "100%" }}>
+      <img style={{ width: "400pt" }} src="./chained.png"></img>
+      <EditDialog headerText="Add yourself!" writeButtonText="Chain me in!" writeFunction={addMe}></EditDialog>
+    </div>
   ) : (
     <>
       <div className="flex items-center flex-col flex-grow pt-10">
         <div className="px-5">
           <h1 className="text-center">
-            <span className="block text-2xl mb-2">Welcome to</span>
-            <span className="block text-4xl font-bold">Web3 Business Directory</span>
+            <img style={{ width: "400pt" }} src="./chained.png"></img>
           </h1>
           <div className="flex justify-center items-center space-x-2 flex-col sm:flex-row">
             <p className="my-2 font-medium">
