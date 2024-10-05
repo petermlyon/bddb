@@ -23,6 +23,21 @@ export const menuLinks: HeaderMenuLink[] = [
     label: "Edit Me",
     href: "/edit",
   },
+  {
+    label: "Help!",
+    href: "/help",
+  },
+];
+
+export const compactMenuLinks: HeaderMenuLink[] = [
+  {
+    label: "Home",
+    href: "/",
+  },
+  {
+    label: "Help!",
+    href: "/help",
+  },
 ];
 
 export const HeaderMenuLinks = () => {
@@ -37,24 +52,23 @@ export const HeaderMenuLinks = () => {
 
   return (
     <>
-      {myData &&
-        menuLinks.map(({ label, href, icon }) => {
-          const isActive = pathname === href;
-          return (
-            <li key={href}>
-              <Link
-                href={href}
-                passHref
-                className={`${
-                  isActive ? "shadow-md" : ""
-                } hover:shadow-md active:!text-neutral py-1.5 px-3 text-sm rounded-full gap-2 grid grid-flow-col`}
-              >
-                {icon}
-                <span>{label}</span>
-              </Link>
-            </li>
-          );
-        })}
+      {(myData ? menuLinks : compactMenuLinks).map(({ label, href, icon }) => {
+        const isActive = pathname === href;
+        return (
+          <li key={href}>
+            <Link
+              href={href}
+              passHref
+              className={`${
+                isActive ? "shadow-md" : ""
+              } hover:shadow-md active:!text-neutral py-1.5 px-3 text-sm rounded-full gap-2 grid grid-flow-col`}
+            >
+              {icon}
+              <span>{label}</span>
+            </Link>
+          </li>
+        );
+      })}
     </>
   );
 };

@@ -92,7 +92,11 @@ const Home: NextPage = () => {
   ) : connectedAddress ? (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", width: "100%" }}>
       <img style={{ width: "400pt" }} src="./chained.png"></img>
-      <EditDialog headerText="Add yourself!" writeButtonText="Chain me in!" writeFunction={addMe}></EditDialog>
+      <EditDialog
+        headerText="Create your business card!"
+        writeButtonText="Chain me in!"
+        writeFunction={addMe}
+      ></EditDialog>
     </div>
   ) : (
     <>
