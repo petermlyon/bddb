@@ -9,6 +9,9 @@ node_modules
 !.yarn/sdks
 !.yarn/versions
 
+# NodeBot/yarn
+NodeBot/.yarn/*
+
 # eslint
 .eslintcache
 

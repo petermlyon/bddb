@@ -19,7 +19,7 @@ export function useHelpers() {
 
     if (user.tg && connectedAddress) {
       console.log(await doHash(user.tg, appSalt));
-      userMod.tgHash = (await doHash(user.tg, appSalt)).hashHex;
+      userMod.tgHash = (await doHash(user.tg, appSalt)).encoded;
     }
 
     return writeContractAsync({
@@ -28,7 +28,23 @@ export function useHelpers() {
     });
   };
 
+  const addMe = async (user: User) => {
+    const userMod = JSON.parse(JSON.stringify(user));
+    delete userMod.tg;
+
+    if (user.tg && connectedAddress) {
+      console.log(await doHash(user.tg, appSalt));
+      userMod.tgHash = (await doHash(user.tg, appSalt)).encoded;
+    }
+
+    return writeContractAsync({
+      functionName: "addUser",
+      args: [userMod],
+    });
+  };
+
   return {
     updateMe,
+    addMe,
   };
 }

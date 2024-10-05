@@ -24,7 +24,11 @@ struct User {
 contract YourContract {
 	// State Variables
 	address public immutable owner;
-	mapping(address => User) public userList;
+	mapping(address => User) public userData;
+	mapping(address => bool) public userList;
+	address[] public addressArray;
+	uint256 public numAddresses = 0;
+
 
 	// Events: a way to emit log statements from smart contract that can be listened to by external parties
 	event UserChange(
@@ -46,23 +50,75 @@ contract YourContract {
 		_;
 	}
 
+	function compareStrings(string memory _a, string memory _b) private pure returns(bool) {
+			return keccak256(abi.encodePacked(_a)) == keccak256(abi.encodePacked(_b));
+	}
+
 	/**
 	 * Function that allows anyone to change the state variable "greeting" of the contract and increase the counters
 	 *
-	 * @param _newUser (string memory) - new greeting to save on the contract
+	 * @param _displayName (string memory) - new greeting to save on the contract
 	 */
-	function updateUser(User memory _newUser) public payable {
+	function userAddress(string memory _displayName) public view returns (address) {
+    for (uint i=0; i<addressArray.length; i++) {
+			if (compareStrings(userData[addressArray[i]].displayName, _displayName)) {
+				return addressArray[i];
+			}
+		}
+		return address(0x0);
+	}
+
+	/**
+	 * Function that allows anyone to change the state variable "greeting" of the contract and increase the counters
+	 *
+	 * @param _newUser (User memory) - new greeting to save on the contract
+	 */
+	function addUser(User memory _newUser) public payable {
 		// Print data to the hardhat chain console. Remove when deploying to a live network.
 		console.log(
-			"Setting username '%s' from %s",
+			"Adding user '%s' from %s",
 			_newUser.displayName,
 			msg.sender
 		);
 
-		userList[msg.sender] = _newUser;
+		require(userAddress(_newUser.displayName) == address(0x0), "Username Already Taken");
+
+		userList[msg.sender] = true;
+		userData[msg.sender] = _newUser;
+		addressArray.push(msg.sender);
+		numAddresses += 1;
 
 		// emit: keyword used to trigger an event
 		emit UserChange(msg.sender, _newUser);
+	}
+
+	modifier onlyUsers {
+		require(userList[msg.sender], "This user does not exist");
+		_;
+	}
+	
+
+	/**
+	 * Function that allows anyone to change the state variable "greeting" of the contract and increase the counters
+	 *
+	 * @param _modifiedUser (User memory) - new greeting to save on the contract
+	 */
+	function updateUser(User memory _modifiedUser) public payable onlyUsers {
+		// Print data to the hardhat chain console. Remove when deploying to a live network.
+		console.log(
+			"Updating user '%s' from %s",
+			_modifiedUser.displayName,
+			msg.sender
+		);
+
+		address nameUser = userAddress(_modifiedUser.displayName);
+
+		require(nameUser == address(0x0) || nameUser == msg.sender, "Username Already Taken");
+
+		userData[msg.sender] = _modifiedUser;
+
+		// emit: keyword used to trigger an event
+		emit UserChange(msg.sender, _modifiedUser);
 	}
 
 	/**

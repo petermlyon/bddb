@@ -7,7 +7,7 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 const deployedContracts = {
   31337: {
     YourContract: {
-      address: "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9",
+      address: "0x5FbDB2315678afecb367f032d93F642f64180aa3",
       abi: [
         {
           inputs: [
@@ -72,6 +72,83 @@ const deployedContracts = {
           type: "event",
         },
         {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "tgHash",
+                  type: "string",
+                },
+                {
+                  internalType: "string",
+                  name: "displayName",
+                  type: "string",
+                },
+                {
+                  internalType: "string",
+                  name: "description",
+                  type: "string",
+                },
+                {
+                  internalType: "string",
+                  name: "company",
+                  type: "string",
+                },
+                {
+                  internalType: "string",
+                  name: "jobTitle",
+                  type: "string",
+                },
+                {
+                  internalType: "string",
+                  name: "bioUrl",
+                  type: "string",
+                },
+              ],
+              internalType: "struct User",
+              name: "_newUser",
+              type: "tuple",
+            },
+          ],
+          name: "addUser",
+          outputs: [],
+          stateMutability: "payable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          name: "addressArray",
+          outputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "numAddresses",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
           inputs: [],
           name: "owner",
           outputs: [
@@ -120,7 +197,7 @@ const deployedContracts = {
                 },
               ],
               internalType: "struct User",
-              name: "_newUser",
+              name: "_modifiedUser",
               type: "tuple",
             },
           ],
@@ -132,12 +209,31 @@ const deployedContracts = {
         {
           inputs: [
             {
+              internalType: "string",
+              name: "_displayName",
+              type: "string",
+            },
+          ],
+          name: "userAddress",
+          outputs: [
+            {
               internalType: "address",
               name: "",
               type: "address",
             },
           ],
-          name: "userList",
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+          ],
+          name: "userData",
           outputs: [
             {
               internalType: "string",
@@ -168,6 +264,25 @@ const deployedContracts = {
               internalType: "string",
               name: "bioUrl",
               type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+          ],
+          name: "userList",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
             },
           ],
           stateMutability: "view",

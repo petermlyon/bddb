@@ -38,6 +38,8 @@
   "packageManager": "yarn@3.2.3",
   "devDependencies": {
     "@types/argon2-browser": "^1.18.4",
+    "@types/es-abstract": "^1",
+    "@types/has": "^1",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3"
   },
@@ -46,6 +48,8 @@
   },
   "dependencies": {
     "argon2-browser": "^1.18.0",
-    "base64-loader": "^1.0.0"
+    "base64-loader": "^1.0.0",
+    "es-abstract": "^1.23.3",
+    "has": "^1.0.4"
   }
 }

@@ -2591,6 +2591,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/es-abstract@npm:^1":
+  version: 1.17.8
+  resolution: "@types/es-abstract@npm:1.17.8"
+  dependencies:
+    "@types/es-to-primitive": "*"
+  checksum: 4a48bb03f9943a2252bc9347c7bbb7c06a97f97ce106688622006c35c857acfe12fa9f31f982e1f4e1dece3a49bf9e7a6f2b5002227990c510b273ffdf96c986
+  languageName: node
+  linkType: hard
+
+"@types/es-to-primitive@npm:*":
+  version: 1.2.7
+  resolution: "@types/es-to-primitive@npm:1.2.7"
+  checksum: 73a7788fe5e1871059fd364c5a0d36ea687e37f535743dd569e7bdb11365c56822e55430a6f5483bbd9c709a69e021629c371b80c284c3923a57a251fbf96f2f
+  languageName: node
+  linkType: hard
+
 "@types/eslint@npm:^8":
   version: 8.56.12
   resolution: "@types/eslint@npm:8.56.12"
@@ -2615,6 +2631,13 @@ __metadata:
     "@types/minimatch": "*"
     "@types/node": "*"
   checksum: 6ae717fedfdfdad25f3d5a568323926c64f52ef35897bcac8aca8e19bc50c0bd84630bbd063e5d52078b2137d8e7d3c26eabebd1a2f03ff350fff8a91e79fc19
+  languageName: node
+  linkType: hard
+
+"@types/has@npm:^1":
+  version: 1.0.2
+  resolution: "@types/has@npm:1.0.2"
+  checksum: aaa18cdd607cbeea70a420b70940141a882565684fd2cc2ec84f9a46f7a84abdf742ccfdb9beded570a783ab34f13d717d7b1f2d56fed5b81f4eefa34d53dac7
   languageName: node
   linkType: hard
 
@@ -8014,6 +8037,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"has@npm:^1.0.4":
+  version: 1.0.4
+  resolution: "has@npm:1.0.4"
+  checksum: 8a11ba062e0627c9578a1d08285401e39f1d071a9692ddf793199070edb5648b21c774dd733e2a181edd635bf6862731885f476f4ccf67c998d7a5ff7cef2550
+  languageName: node
+  linkType: hard
+
 "hash-base@npm:^3.0.0":
   version: 3.1.0
   resolution: "hash-base@npm:3.1.0"
@@ -11791,8 +11821,12 @@ __metadata:
   resolution: "se-2@workspace:."
   dependencies:
     "@types/argon2-browser": ^1.18.4
+    "@types/es-abstract": ^1
+    "@types/has": ^1
     argon2-browser: ^1.18.0
     base64-loader: ^1.0.0
+    es-abstract: ^1.23.3
+    has: ^1.0.4
     husky: ^8.0.1
     lint-staged: ^13.0.3
   languageName: unknown

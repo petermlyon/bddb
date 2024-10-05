@@ -30,3 +30,20 @@ p {
 .btn.btn-ghost {
   @apply shadow-none;
 }
+
+.textBox {
+  width: 60%;
+  border-radius: 10pt;
+  background-color: #5d45d9;
+  padding-top: 2pt;
+  padding-bottom: 2pt;
+  padding-left: 10pt;
+  padding-right: 10pt;
+  margin: 1pt;
+}
+
+.textBox:focus {
+  border: white solid 1pt;
+  margin: 1pt;
+  outline-width: 0;
+}
