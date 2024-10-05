@@ -52,7 +52,7 @@ const Home: NextPage = () => {
           </div>
           <div
             className="flex items-center flex-row flex-grow pt-10"
-            style={{ width: "50%", justifyContent: "center", margin: "auto" }}
+            style={{ width: "500pt", maxWidth: "100%", justifyContent: "center", margin: "auto" }}
           >
             <svg xmlns="http://www.w3.org/2000/svg" style={{ width: "20pt" }} viewBox="0 0 24 24">
               <path
@@ -60,7 +60,12 @@ const Home: NextPage = () => {
                 fill="#ffffff"
               />
             </svg>
-            <input type="text" className="textBox" onChange={e => setFilter(e.target.value)} />
+            <input
+              style={{ width: "100%" }}
+              type="text"
+              className="textBox"
+              onChange={e => setFilter(e.target.value)}
+            />
           </div>
           <div className="flex justify-center items-center space-x-2 flex-col sm:flex-row">
             <p className="my-2 font-medium">Browse the directory below.</p>

@@ -25,6 +25,9 @@ export const EditDialog = ({ writeFunction, headerText, writeButtonText }: EditD
 
   useEffect(() => {
     const newUserData = JSON.parse(JSON.stringify(user));
+    if (userData?.[0]) {
+      newUserData.tg = userData![0];
+    }
     if (userData?.[1]) {
       newUserData.displayName = userData![1];
     }
@@ -61,14 +64,15 @@ export const EditDialog = ({ writeFunction, headerText, writeButtonText }: EditD
           {headerText}
         </h1>
         <div style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
-          <p>Display Name</p>
+          <p>ChainedIn username</p>
           <input
             className="textBox"
             type="text"
             value={user.displayName}
             onChange={e => {
               const newUser = JSON.parse(JSON.stringify(user));
-              newUser.displayName = e.target.value;
+              newUser.displayName = e.target.value.toLowerCase();
+              newUser.displayName = newUser.displayName.replace(" ", "");
               setUser(newUser);
             }}
           />
@@ -78,7 +82,8 @@ export const EditDialog = ({ writeFunction, headerText, writeButtonText }: EditD
           <input
             className="textBox"
             type="text"
-            value={user.tg}
+            value={user.tg == userData?.[0] ? "" : user.tg}
+            placeholder={userData?.[0] && userData?.[0] != "" ? "Saved" : ""}
             onChange={e => {
               const newUser = JSON.parse(JSON.stringify(user));
               newUser.tg = e.target.value;
@@ -146,7 +151,9 @@ export const EditDialog = ({ writeFunction, headerText, writeButtonText }: EditD
             borderRadius: "10pt",
             marginTop: "50pt",
           }}
-          onClick={() => writeFunction(user)}
+          onClick={() => {
+            writeFunction(user);
+          }}
         >
           {writeButtonText}
         </button>

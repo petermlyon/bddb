@@ -17,9 +17,11 @@ export function useHelpers() {
     const userMod = JSON.parse(JSON.stringify(user));
     delete userMod.tg;
 
-    if (user.tg && connectedAddress) {
+    if (user.tg && !user.tg.includes("argon2") && connectedAddress) {
       console.log(await doHash(user.tg, appSalt));
       userMod.tgHash = (await doHash(user.tg, appSalt)).encoded;
+    } else {
+      userMod.tgHash = user.tg;
     }
 
     return writeContractAsync({

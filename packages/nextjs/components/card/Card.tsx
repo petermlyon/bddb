@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import MD5 from "crypto-js/md5";
+import { useEnsAvatar, useEnsName } from "wagmi";
 import { useScaffoldReadContract } from "~~/hooks/scaffold-eth";
 
 type CardProps = {
@@ -19,6 +21,14 @@ export const Card = ({ index, filter }: CardProps) => {
     args: [walletAddress],
   });
   const [hidden, setHidden] = useState(false);
+
+  const { data: ensName } = useEnsName({
+    address: walletAddress,
+  });
+
+  const { data: ensAvatar } = useEnsAvatar({
+    name: ensName ? ensName : "",
+  });
 
   useEffect(() => {
     let newHidden = true;
@@ -44,16 +54,64 @@ export const Card = ({ index, filter }: CardProps) => {
         width: "min(400px, 100%)",
         color: "black",
         borderRadius: "50pt",
-        padding: "50pt",
+        paddingLeft: "50pt",
+        paddingRight: "50pt",
+        paddingBottom: "50pt",
+        paddingTop: "20pt",
       }}
     >
-      <div style={{ display: "flex", flexDirection: "column", height: "100%", justifyContent: "center" }}>
-        <p>Display Name: {userData?.[1]} </p>
-        <p>Description: {userData?.[2]} </p>
-        <p>Company: {userData?.[3]} </p>
-        <p>Job Title: {userData?.[4]} </p>
-        <p>Bio: {userData?.[5]} </p>
-        <p>{userData?.[0] ? "Telegram Available" : "Telegram Unavailable"}</p>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          height: "100%",
+          justifyContent: "center",
+          alignItems: "center",
+          lineHeight: 1.8,
+          textAlign: "center",
+        }}
+      >
+        <img
+          style={{ position: "relative", width: "80pt", borderRadius: "40pt", marginBottom: "20pt" }}
+          src={
+            ensAvatar
+              ? ensAvatar
+              : `https://gravatar.com/avatar/${MD5(walletAddress ? walletAddress : "placeholder").toString()}?d=retro`
+          }
+        />
+        {ensName && (
+          <span>
+            <b>Ens Name: </b>
+            {ensName}{" "}
+          </span>
+        )}
+        <span>
+          <b>ChainedIn Username: </b>
+          {userData?.[1]}
+        </span>
+        <span>
+          <b>Description: </b>
+          {userData?.[2]}
+        </span>
+        <span>
+          <b>Company: </b>
+          {userData?.[3]}
+        </span>
+        <span>
+          <b>Job Title: </b>
+          {userData?.[4]}
+        </span>
+        <span>
+          <b>Bio: </b>
+          {userData?.[5]}
+        </span>
+        <span>
+          {userData?.[0] && (
+            <a href="https://t.me/chainedin_bot" target="_blank">
+              <u>Contact via Telegram</u>
+            </a>
+          )}
+        </span>
       </div>
     </div>
   );
