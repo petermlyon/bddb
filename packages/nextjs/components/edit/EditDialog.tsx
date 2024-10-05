@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useAccount } from "wagmi";
+import { useAccount, useEnsName, useEnsText } from "wagmi";
 import { User } from "~~/app/ApiClasses/User";
 import { useScaffoldReadContract } from "~~/hooks/scaffold-eth";
 
@@ -15,12 +15,39 @@ export const EditDialog = ({ writeFunction, headerText, writeButtonText }: EditD
   const [user, setUser] = useState<User>({
     displayName: "",
     description: "",
+    tg: "",
+    company: "",
+    jobTitle: "",
+    bioUrl: "",
   });
 
   const { data: userData } = useScaffoldReadContract({
     contractName: "YourContract",
     functionName: "userData",
     args: [connectedAddress],
+  });
+
+  const [wasSet, setWasSet] = useState({
+    displayName: false,
+    description: false,
+    tg: false,
+  });
+
+  const { data: ensName } = useEnsName({
+    address: connectedAddress,
+    chainId: 1,
+  });
+
+  const { data: description } = useEnsText({
+    name: ensName ? ensName : "",
+    key: "description",
+    chainId: 1,
+  });
+
+  const { data: telegram } = useEnsText({
+    name: ensName ? ensName : "",
+    key: "org.telegram",
+    chainId: 1,
   });
 
   useEffect(() => {
@@ -45,6 +72,39 @@ export const EditDialog = ({ writeFunction, headerText, writeButtonText }: EditD
     }
     setUser(newUserData);
   }, [userData]);
+
+  useEffect(() => {
+    if (!wasSet.displayName && user.displayName == "" && ensName) {
+      const newUser = JSON.parse(JSON.stringify(user));
+      newUser.displayName = ensName;
+      setUser(newUser);
+      const newWasSet = JSON.parse(JSON.stringify(wasSet));
+      newWasSet.displayName = true;
+      setWasSet(newWasSet);
+    }
+  }, [ensName, user, wasSet]);
+
+  useEffect(() => {
+    if (!wasSet.tg && user.tg == "" && telegram) {
+      const newUser = JSON.parse(JSON.stringify(user));
+      newUser.tg = telegram;
+      setUser(newUser);
+      const newWasSet = JSON.parse(JSON.stringify(wasSet));
+      newWasSet.tg = true;
+      setWasSet(newWasSet);
+    }
+  }, [telegram, user, wasSet]);
+
+  useEffect(() => {
+    if (!wasSet.description && user.description == "" && description) {
+      const newUser = JSON.parse(JSON.stringify(user));
+      newUser.description = description;
+      setUser(newUser);
+      const newWasSet = JSON.parse(JSON.stringify(wasSet));
+      newWasSet.description = true;
+      setWasSet(newWasSet);
+    }
+  }, [description, user, wasSet]);
 
   return (
     <>
@@ -78,7 +138,7 @@ export const EditDialog = ({ writeFunction, headerText, writeButtonText }: EditD
           />
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
-          <p>Telegram Name</p>
+          <p>Telegram ID</p>
           <input
             className="textBox"
             type="text"
