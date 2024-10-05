@@ -31,14 +31,14 @@ export const EditDialog = ({ writeFunction, headerText, writeButtonText }: EditD
     if (userData?.[2]) {
       newUserData.description = userData![2];
     }
+    if (userData?.[5]) {
+      newUserData.bioUrl = userData![5];
+    }
     if (userData?.[3]) {
-      newUserData.bioUrl = userData![3];
+      newUserData.company = userData![3];
     }
     if (userData?.[4]) {
-      newUserData.company = userData![4];
-    }
-    if (userData?.[5]) {
-      newUserData.jobTitle = userData![5];
+      newUserData.jobTitle = userData![4];
     }
     setUser(newUserData);
   }, [userData]);
