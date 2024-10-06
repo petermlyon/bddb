@@ -1,8 +1,11 @@
 # ChainedIn, build on Scaffold 2:
 
 yarn install
+
 yarn start/yarn deploy
+
 Contract ABI and contract address/network must be copied over into bot.js in sister repo: https://github.com/petermlyon/chainedin_bot
+
 
 # Scaffold 2 README below
 
