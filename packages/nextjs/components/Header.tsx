@@ -20,11 +20,11 @@ export const menuLinks: HeaderMenuLink[] = [
     href: "/",
   },
   {
-    label: "Edit Me",
+    label: "My Card",
     href: "/edit",
   },
   {
-    label: "Help!",
+    label: "Help",
     href: "/help",
   },
 ];
@@ -35,7 +35,7 @@ export const compactMenuLinks: HeaderMenuLink[] = [
     href: "/",
   },
   {
-    label: "Help!",
+    label: "Help",
     href: "/help",
   },
 ];
