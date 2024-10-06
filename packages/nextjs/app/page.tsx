@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { useHelpers } from "./utils/helpers";
 import type { NextPage } from "next";
 import { useAccount } from "wagmi";
@@ -26,6 +27,7 @@ const Home: NextPage = () => {
   const [addressArray, setAddressArray] = useState<number[]>([]);
   const [addressesLoaded, setAddressesLoaded] = useState(0);
   const [filter, setFilter] = useState("");
+  const router = useRouter();
 
   useEffect(() => {
     if (!numAddresses) {
@@ -95,7 +97,9 @@ const Home: NextPage = () => {
       <EditDialog
         headerText="Create your business card!"
         writeButtonText="Chain me in!"
-        writeFunction={addMe}
+        writeFunction={user => {
+          addMe(user).then(() => router.push("/setup"));
+        }}
       ></EditDialog>
     </div>
   ) : (

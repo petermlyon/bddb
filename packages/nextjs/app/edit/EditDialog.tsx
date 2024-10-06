@@ -145,7 +145,7 @@ export const EditDialog = ({ writeFunction, headerText, writeButtonText }: EditD
         </div>
         <button
           style={{
-            backgroundColor: "#00000020",
+            backgroundColor: "#ffffff20",
             width: "200pt",
             height: "50pt",
             borderRadius: "10pt",
