@@ -24,10 +24,12 @@ export const Card = ({ index, filter }: CardProps) => {
 
   const { data: ensName } = useEnsName({
     address: walletAddress,
+    chainId: 1,
   });
 
   const { data: ensAvatar } = useEnsAvatar({
     name: ensName ? ensName : "",
+    chainId: 1,
   });
 
   useEffect(() => {
