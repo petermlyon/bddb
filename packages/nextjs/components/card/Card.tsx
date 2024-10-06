@@ -69,6 +69,7 @@ export const Card = ({ index, filter }: CardProps) => {
           alignItems: "center",
           lineHeight: 1.8,
           textAlign: "center",
+          position: "relative",
         }}
       >
         <img
@@ -79,6 +80,12 @@ export const Card = ({ index, filter }: CardProps) => {
               : `https://gravatar.com/avatar/${MD5(walletAddress ? walletAddress : "placeholder").toString()}?d=retro`
           }
         />
+        {ensName && (
+          <img
+            style={{ position: "absolute", width: "40pt", transform: "translate(30pt, -50pt)" }}
+            src={`./tick.png`}
+          />
+        )}
         {ensName && (
           <span>
             <b>Ens Name: </b>
