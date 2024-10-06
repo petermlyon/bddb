@@ -30,7 +30,7 @@ const Edit: NextPage = () => {
       </p>
       <button
         style={{
-          backgroundColor: "#ffffff20",
+          backgroundColor: "#00000080",
           width: "200pt",
           height: "50pt",
           borderRadius: "10pt",

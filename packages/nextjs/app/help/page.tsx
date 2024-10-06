@@ -9,7 +9,7 @@ const Edit: NextPage = () => {
         display: "flex",
         flexDirection: "column",
         justifyContent: "flex-start",
-        width: "80%",
+        maxWidth: "600pt",
         alignItems: "center",
         textAlign: "center",
         marginLeft: "auto",
@@ -17,19 +17,33 @@ const Edit: NextPage = () => {
       }}
     >
       <img style={{ width: "400pt" }} src="./chained.png"></img>
-      <p>
-        Your Telegram username is never stored by ChainedIn, it is hashed on the client side such that your personal
-        contact doesn&apos;t end up on the blockchain.
-      </p>
-      <p>
-        Once you&apos;ve added yourself to ChainedIn, click the Telegram links to connect to the Telegram bot. You can
-        log in with your ChainedIn username - no password required.
-      </p>
-      <p>
-        You can then initiate chats with other ChainedIn users via /chat. All ChainedIn chats will occur inside the
-        ChainedIn bot chat, to get messages to a specific user you must reply to a message you have received from them,
-        or to the /chat initiation message.
-      </p>
+      <div
+        style={{
+          flexDirection: "column",
+          borderRadius: "50pt",
+          padding: "50pt",
+          marginTop: "50pt",
+          fontSize: "16pt",
+          backgroundColor: "#0000077",
+          justifyContent: "center",
+          height: "100%",
+        }}
+      >
+        <p>
+          Your Telegram ID is never stored by ChainedIn, it is hashed on the client side such that your personal contact
+          doesn&apos;t end up being public (on the blockchain).
+        </p>
+        <p>
+          Once you&apos;ve added yourself to ChainedIn, you can chat with other users. Click the Telegram link on each
+          business card to connect to the Telegram bot. You can log in with your ChainedIn username - no password
+          required.
+        </p>
+        <p>
+          You can then initiate chats with other ChainedIn users via /chat. All ChainedIn chats will occur inside the
+          ChainedIn bot chat, to get messages to a specific user you must reply to a message you have received from
+          them, or to the /chat initiation message.
+        </p>
+      </div>
     </div>
   );
 };
