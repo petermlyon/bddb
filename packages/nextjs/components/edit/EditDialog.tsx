@@ -31,6 +31,7 @@ export const EditDialog = ({ writeFunction, headerText, writeButtonText }: EditD
     displayName: false,
     description: false,
     tg: false,
+    bioUrl: false,
   });
 
   const { data: ensName } = useEnsName({
@@ -47,6 +48,12 @@ export const EditDialog = ({ writeFunction, headerText, writeButtonText }: EditD
   const { data: telegram } = useEnsText({
     name: ensName ? ensName : "",
     key: "org.telegram",
+    chainId: 1,
+  });
+
+  const { data: twitter } = useEnsText({
+    name: ensName ? ensName : "",
+    key: "com.twitter",
     chainId: 1,
   });
 
@@ -102,6 +109,17 @@ export const EditDialog = ({ writeFunction, headerText, writeButtonText }: EditD
       setUser(newUser);
       const newWasSet = JSON.parse(JSON.stringify(wasSet));
       newWasSet.description = true;
+      setWasSet(newWasSet);
+    }
+  }, [description, user, wasSet]);
+
+  useEffect(() => {
+    if (!wasSet.bioUrl && user.bioUrl == "" && twitter) {
+      const newUser = JSON.parse(JSON.stringify(user));
+      newUser.bioUrl = `https://x.com/${twitter}`;
+      setUser(newUser);
+      const newWasSet = JSON.parse(JSON.stringify(wasSet));
+      newWasSet.bioUrl = true;
       setWasSet(newWasSet);
     }
   }, [description, user, wasSet]);

@@ -103,7 +103,11 @@ export const Card = ({ index, filter }: CardProps) => {
         </span>
         <span>
           <b>Bio: </b>
-          {userData?.[5]}
+          {userData?.[5] && (
+            <a href={userData?.[5]} target="_blank">
+              <u>{userData?.[5]}</u>
+            </a>
+          )}
         </span>
         <span>
           {userData?.[0] && (

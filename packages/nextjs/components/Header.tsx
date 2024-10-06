@@ -52,7 +52,7 @@ export const HeaderMenuLinks = () => {
 
   return (
     <>
-      {(myData ? menuLinks : compactMenuLinks).map(({ label, href, icon }) => {
+      {(myData?.[1] ? menuLinks : compactMenuLinks).map(({ label, href, icon }) => {
         const isActive = pathname === href;
         return (
           <li key={href}>
