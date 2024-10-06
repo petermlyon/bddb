@@ -107,12 +107,14 @@ const Home: NextPage = () => {
       <div className="flex items-center flex-col flex-grow pt-10">
         <div className="px-5">
           <h1 className="text-center">
-            <img style={{ width: "400pt" }} src="./chained.png"></img>
+            <img style={{ width: "400pt", marginLeft: "auto", marginRight: "auto" }} src="./chained.png"></img>
           </h1>
           <div className="flex justify-center items-center space-x-2 flex-col sm:flex-row">
-            <p className="my-2 font-medium">
-              Connect your wallet and create your business card to access the directory.
-            </p>
+            <div>
+              <p className="my-2 text-4xl" style={{ textAlign: "center", marginTop: "50pt" }}>
+                Connect your wallet and create your business card to access the directory.
+              </p>
+            </div>
           </div>
         </div>
       </div>
