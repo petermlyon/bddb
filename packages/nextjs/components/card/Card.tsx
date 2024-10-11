@@ -74,20 +74,22 @@ export const Card = ({ index, filter }: CardProps) => {
           position: "relative",
         }}
       >
-        <img
-          style={{ position: "relative", width: "80pt", borderRadius: "40pt", marginBottom: "20pt" }}
-          src={
-            ensAvatar
-              ? ensAvatar
-              : `https://gravatar.com/avatar/${MD5(walletAddress ? walletAddress : "placeholder").toString()}?d=retro`
-          }
-        />
-        {ensName && (
+        <div style={{ position: "relative" }}>
           <img
-            style={{ position: "absolute", width: "40pt", transform: "translate(30pt, -50pt)" }}
-            src={`./tick.png`}
+            style={{ position: "relative", width: "80pt", borderRadius: "40pt", marginBottom: "20pt" }}
+            src={
+              ensAvatar
+                ? ensAvatar
+                : `https://gravatar.com/avatar/${MD5(walletAddress ? walletAddress : "placeholder").toString()}?d=retro`
+            }
           />
-        )}
+          {ensName && (
+            <img
+              style={{ position: "absolute", width: "40pt", transform: "translate(50pt, -50pt)" }}
+              src={`./tick.png`}
+            />
+          )}
+        </div>
         {ensName && (
           <span>
             <b>Ens Name: </b>
